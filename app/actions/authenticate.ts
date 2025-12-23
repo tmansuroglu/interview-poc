@@ -1,3 +1,5 @@
+"use server";
+
 import { authValidationSchema } from "@/lib/field-validations";
 import { AuthFields } from "@/lib/field-names";
 import { treeifyError } from "zod";

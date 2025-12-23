@@ -1,10 +1,12 @@
-// TODO: handle all auth error cases properly.
+"use server";
+// TODO: handle all firebase and drizzle auth error cases properly.
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import { FirebaseError } from "firebase/app";
 import { FirebaseAuthErrorCodes } from "../enums";
 import { AuthFields } from "../field-names";
+import { dbInsertUser } from "../db/user/db-insert-user";
 
 type RegisterUserOptions = {
   email: string;
@@ -16,10 +18,18 @@ export const registerUser = async ({
   password,
 }: RegisterUserOptions) => {
   try {
-    const user = (await createUserWithEmailAndPassword(auth, email, password))
-      .user;
+    const userData = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-    return { success: true, user };
+    await dbInsertUser({
+      firebaseUserId: userData.user.uid,
+      email,
+    });
+
+    return { success: true };
   } catch (error) {
     if (!(error instanceof FirebaseError)) {
       return { success: false, message: "Unexpected firebase register error." };
