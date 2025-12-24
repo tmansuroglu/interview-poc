@@ -5,7 +5,9 @@ import { Root, Thumb } from "@radix-ui/react-switch";
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "react";
 
-function Switch({ className, ...props }: ComponentProps<typeof Root>) {
+export type SwitchProps = ComponentProps<typeof Root>;
+
+function Switch({ className, ...props }: SwitchProps) {
   return (
     <Root
       data-slot="switch"
