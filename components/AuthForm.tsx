@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useId, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -16,8 +16,10 @@ type AuthFormProps = {
 };
 
 // TODO: handle focus based on the response
-// TODO: Submit removes input state. It should be kept.
 export function AuthForm({ pending, state, formAction }: AuthFormProps) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const emailId = useId();
   const passwordId = useId();
 
@@ -41,6 +43,8 @@ export function AuthForm({ pending, state, formAction }: AuthFormProps) {
         <Input
           id={emailId}
           type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           minLength={AUTH_FIELDS_VALIDATION_RULES.email.minLenght.value}
           maxLength={AUTH_FIELDS_VALIDATION_RULES.email.maxLength.value}
           required
@@ -62,6 +66,8 @@ export function AuthForm({ pending, state, formAction }: AuthFormProps) {
         <Label htmlFor={passwordId}>Password</Label>
         <Input
           id={passwordId}
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           minLength={AUTH_FIELDS_VALIDATION_RULES.password.minLenght.value}
           maxLength={AUTH_FIELDS_VALIDATION_RULES.password.maxLength.value}
