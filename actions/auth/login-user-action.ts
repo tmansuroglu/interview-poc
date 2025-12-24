@@ -17,8 +17,6 @@ export const loginUserAction = async (
   prevState: AuthState,
   formData: FormData
 ): Promise<AuthState> => {
-  let shouldRedirect = false;
-
   try {
     const validationResponse = validateAuthFields(formData);
 
@@ -40,7 +38,7 @@ export const loginUserAction = async (
 
     await createSession(userData.user.uid);
 
-    shouldRedirect = true;
+    throw Error("redirect");
   } catch (error) {
     if (error instanceof FirebaseError) {
       return {
@@ -56,10 +54,10 @@ export const loginUserAction = async (
       };
     }
 
-    return { success: false, message: "Unexpected login error" };
-  } finally {
-    if (shouldRedirect) {
+    if (error instanceof Error && error.message === "redirect") {
       redirect(PrivateRoutes.Dashboard, RedirectType.replace);
     }
+
+    return { success: false, message: "Unexpected login error" };
   }
 };

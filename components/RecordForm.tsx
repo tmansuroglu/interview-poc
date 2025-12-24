@@ -8,11 +8,11 @@ import { Label } from "./ui/label";
 import { RECORD_FIELDS_VALIDATION_RULES } from "@/lib/validation-rules";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
-import { RecordState } from "@/lib/types";
+import { InsertRecordState } from "@/lib/types";
 
 type RecordFormProps = {
   pending: boolean;
-  state: RecordState;
+  state: InsertRecordState;
   formAction: (formData: FormData) => void;
 };
 
@@ -45,7 +45,7 @@ export default function RecordForm({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          minLength={RECORD_FIELDS_VALIDATION_RULES.name.minLenght.value}
+          minLength={RECORD_FIELDS_VALIDATION_RULES.name.minLength.value}
           maxLength={RECORD_FIELDS_VALIDATION_RULES.name.maxLength.value}
           required
           disabled={pending}
@@ -65,6 +65,7 @@ export default function RecordForm({
       <div className="space-y-2">
         <Label htmlFor={vaccineInputId}>Is Vaccinated?</Label>
         <Switch
+          role="switch"
           checked={isVaccinated}
           onClick={() => setIsVaccinated((prev) => !prev)}
           id={vaccineInputId}
@@ -87,6 +88,7 @@ export default function RecordForm({
         type="submit"
         className="mx-auto"
         disabled={pending}
+        aria-busy={pending}
         aria-disabled={pending}
       >
         {pending ? "Loading..." : "Submit"}

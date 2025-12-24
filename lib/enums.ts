@@ -8,10 +8,6 @@ export enum RecordFields {
   IsVaccinated = "isVaccinated",
 }
 
-export enum CookieErrors {
-  InvalidSession = "invalid-cookie-session",
-}
-
 export enum FirebaseAuthErrorCodes {
   ClaimsTooLarge = "auth/claims-too-large",
   EmailAlreadyExists = "auth/email-already-exists",

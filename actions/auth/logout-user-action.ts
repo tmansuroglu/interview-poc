@@ -3,5 +3,9 @@
 import { deleteSession } from "@/lib/session/delete-session";
 
 export const logoutUserAction = async () => {
-  await deleteSession();
+  try {
+    await deleteSession();
+  } catch (err) {
+    console.error("Logout failed", err);
+  }
 };

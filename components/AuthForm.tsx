@@ -45,7 +45,7 @@ export function AuthForm({ pending, state, formAction }: AuthFormProps) {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          minLength={AUTH_FIELDS_VALIDATION_RULES.email.minLenght.value}
+          minLength={AUTH_FIELDS_VALIDATION_RULES.email.minLength.value}
           maxLength={AUTH_FIELDS_VALIDATION_RULES.email.maxLength.value}
           required
           disabled={pending}
@@ -69,7 +69,7 @@ export function AuthForm({ pending, state, formAction }: AuthFormProps) {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           type="password"
-          minLength={AUTH_FIELDS_VALIDATION_RULES.password.minLenght.value}
+          minLength={AUTH_FIELDS_VALIDATION_RULES.password.minLength.value}
           maxLength={AUTH_FIELDS_VALIDATION_RULES.password.maxLength.value}
           required
           disabled={pending}
@@ -94,6 +94,7 @@ export function AuthForm({ pending, state, formAction }: AuthFormProps) {
         className="mx-auto"
         disabled={pending}
         aria-disabled={pending}
+        aria-busy={pending}
       >
         {pending ? "Loading..." : "Submit"}
       </Button>

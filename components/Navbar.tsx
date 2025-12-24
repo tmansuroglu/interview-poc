@@ -38,7 +38,7 @@ export default async function Navbar() {
         )}
         {isAuth && (
           <li>
-            <Button onClick={logoutUserAction}>Logout</Button>;
+            <Button onClick={logoutUserAction}>Logout</Button>
           </li>
         )}
       </ul>

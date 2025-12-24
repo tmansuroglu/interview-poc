@@ -3,11 +3,13 @@
 import { validateRecordFields } from "@/lib/action-utils/validate-record-fields";
 import { getDrizzleErrorMessage } from "@/lib/db/get-drizzle-error-message";
 import { insertRecord } from "@/lib/db/record/insert-record";
-import { CookieErrors, PrivateRoutes } from "@/lib/enums";
+import { PrivateRoutes, PublicRoutes } from "@/lib/enums";
 import { verifySession } from "@/lib/session/verify-session";
 import { InsertRecordState } from "@/lib/types";
 import { DrizzleQueryError } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { logoutUserAction } from "../auth/logout-user-action";
+import { redirect, RedirectType } from "next/navigation";
 
 export const insertRecordAction = async (
   prevState: InsertRecordState,
@@ -28,7 +30,7 @@ export const insertRecordAction = async (
     const { firebaseUserId } = await verifySession();
 
     if (!firebaseUserId) {
-      throw new Error(CookieErrors.InvalidSession);
+      throw Error("logout");
     }
 
     await insertRecord({
@@ -47,6 +49,11 @@ export const insertRecordAction = async (
         message: getDrizzleErrorMessage(error),
         resetId: prevState?.resetId,
       };
+    }
+
+    if (error instanceof Error && error.message === "logout") {
+      await logoutUserAction();
+      redirect(PublicRoutes.Login, RedirectType.replace);
     }
 
     console.log("Unexpected insert record error", error);

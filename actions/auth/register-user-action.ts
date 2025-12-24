@@ -17,7 +17,6 @@ export const registerUserAction = async (
   prevState: AuthState,
   formData: FormData
 ): Promise<AuthState> => {
-  let shouldRedirect = false;
   try {
     const validationResponse = validateAuthFields(formData);
 
@@ -42,7 +41,7 @@ export const registerUserAction = async (
 
     await createSession(userData.user.uid);
 
-    shouldRedirect = true;
+    throw Error("redirect");
   } catch (error) {
     if (error instanceof FirebaseError) {
       return {
@@ -58,12 +57,10 @@ export const registerUserAction = async (
       };
     }
 
-    console.log("Unexpected register error", error);
-
-    return { success: false, message: "Unexpected register error" };
-  } finally {
-    if (shouldRedirect) {
+    if (error instanceof Error && error.message === "redirect") {
       redirect(PrivateRoutes.Dashboard, RedirectType.replace);
     }
+
+    return { success: false, message: "Unexpected register error" };
   }
 };
