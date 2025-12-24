@@ -15,6 +15,13 @@
       "when": 1766530741800,
       "tag": "0001_silky_hobgoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1766596710772,
+      "tag": "0002_tidy_centennial",
+      "breakpoints": true
     }
   ]
 }

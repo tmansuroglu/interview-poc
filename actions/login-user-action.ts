@@ -9,9 +9,9 @@ import { FirebaseError } from "firebase/app";
 import { DrizzleQueryError } from "drizzle-orm";
 import { auth } from "@/lib/firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { dbLoginUser } from "@/lib/db/user/db-login-user";
 import { getFirebaseAuthErrorMessage } from "@/lib/firebase/firebase-error-messages";
 import { getDrizzleErrorMessage } from "@/lib/db/get-drizzle-error-message";
+import { loginUser } from "@/lib/db/user/login-user";
 
 export const loginUserAction = async (
   prevState: AuthState,
@@ -36,7 +36,7 @@ export const loginUserAction = async (
       validationResponse.fields.password
     );
 
-    await dbLoginUser({ firebaseUserId: userData.user.uid });
+    await loginUser({ firebaseUserId: userData.user.uid });
 
     await createSession(userData.user.uid);
 

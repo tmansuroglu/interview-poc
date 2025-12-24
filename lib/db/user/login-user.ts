@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 
 type LoginUserOptions = { firebaseUserId: string };
 
-export const dbLoginUser = async ({ firebaseUserId }: LoginUserOptions) =>
+export const loginUser = async ({ firebaseUserId }: LoginUserOptions) =>
   await db
     .update(users)
     .set({ lastLoginAt: new Date() })

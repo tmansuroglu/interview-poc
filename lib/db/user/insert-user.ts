@@ -5,7 +5,7 @@ import { users } from "../schema";
 
 type InsertUserOptions = { firebaseUserId: string; email: string };
 
-export const dbInsertUser = async ({
+export const insertUser = async ({
   firebaseUserId,
   email,
 }: InsertUserOptions) =>

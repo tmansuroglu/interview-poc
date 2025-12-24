@@ -7,11 +7,11 @@ import { PrivateRoutes } from "@/lib/enums";
 import { validateAuthFields } from "@/lib/action-utils/validate-auth-fields";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase/firebase";
-import { dbInsertUser } from "@/lib/db/user/db-insert-user";
 import { FirebaseError } from "firebase/app";
 import { getFirebaseAuthErrorMessage } from "@/lib/firebase/firebase-error-messages";
 import { DrizzleQueryError } from "drizzle-orm";
 import { getDrizzleErrorMessage } from "@/lib/db/get-drizzle-error-message";
+import { insertUser } from "@/lib/db/user/insert-user";
 
 export const registerUserAction = async (
   prevState: AuthState,
@@ -35,7 +35,7 @@ export const registerUserAction = async (
       validationResponse.fields.password
     );
 
-    await dbInsertUser({
+    await insertUser({
       firebaseUserId: userData.user.uid,
       email: validationResponse.fields.email,
     });
