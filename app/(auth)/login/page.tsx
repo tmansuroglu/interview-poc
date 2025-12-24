@@ -1,6 +1,6 @@
 "use client";
 
-import { loginUserAction } from "@/actions/login-user-action";
+import { loginUserAction } from "@/actions/auth/login-user-action";
 import { AuthForm } from "@/components/AuthForm";
 import { useActionState } from "react";
 

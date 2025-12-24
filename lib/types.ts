@@ -7,3 +7,10 @@ export type AuthState = {
 export type SessionPayload = {
   firebaseUserId: string;
 };
+
+export type RecordState = {
+  success: boolean;
+  errors?: { name?: string[]; isVaccinated?: string[] };
+  message?: string;
+  resetId?: string;
+} | null;

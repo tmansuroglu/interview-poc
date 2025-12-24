@@ -2,7 +2,7 @@ import { PrivateRoutes, PublicRoutes } from "@/lib/enums";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { verifySession } from "@/lib/session/verify-session";
-import { logoutUserAction } from "@/actions/logout-user-action";
+import { logoutUserAction } from "@/actions/auth/logout-user-action";
 
 export default async function Navbar() {
   const { isAuth } = await verifySession();

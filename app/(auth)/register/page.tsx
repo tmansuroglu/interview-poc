@@ -1,6 +1,6 @@
 "use client";
 
-import { registerUserAction } from "@/actions/register-user-action";
+import { registerUserAction } from "@/actions/auth/register-user-action";
 import { AuthForm } from "@/components/AuthForm";
 import { useActionState } from "react";
 
