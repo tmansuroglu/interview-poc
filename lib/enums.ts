@@ -6,6 +6,7 @@ export enum AuthFields {
 export enum FirebaseAuthErrorCodes {
   ClaimsTooLarge = "auth/claims-too-large",
   EmailAlreadyExists = "auth/email-already-exists",
+  EmailAlreadyInUse = "auth/email-already-in-use",
   IdTokenExpired = "auth/id-token-expired",
   IdTokenRevoked = "auth/id-token-revoked",
   InsufficientPermission = "auth/insufficient-permission",

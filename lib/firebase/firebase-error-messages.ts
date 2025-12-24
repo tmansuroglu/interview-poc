@@ -6,6 +6,8 @@ export const firebaseAuthErrorMessages: Record<FirebaseAuthErrorCodes, string> =
       "Your account information is too large to process.",
     [FirebaseAuthErrorCodes.EmailAlreadyExists]:
       "An account with this email already exists.",
+    [FirebaseAuthErrorCodes.EmailAlreadyInUse]:
+      "An account with this email already exists.",
     [FirebaseAuthErrorCodes.IdTokenExpired]:
       "Your session has expired. Please sign in again.",
     [FirebaseAuthErrorCodes.IdTokenRevoked]:
@@ -110,6 +112,7 @@ export const firebaseAuthErrorMessages: Record<FirebaseAuthErrorCodes, string> =
  * Converts a Firebase auth error code into a user-friendly message.
  */
 export function getFirebaseAuthErrorMessage(errorCode?: string): string {
+  console.log("errorCode", errorCode);
   if (!errorCode) {
     return "Something went wrong. Please try again.";
   }
