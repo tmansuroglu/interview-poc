@@ -3,3 +3,7 @@ export type AuthState = {
   errors?: { email?: string[]; password?: string[] };
   message?: string;
 } | null;
+
+export type SessionPayload = {
+  firebaseUserId: string;
+};

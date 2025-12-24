@@ -1,3 +1,8 @@
+export enum AuthFields {
+  Email = "email",
+  Password = "password",
+}
+
 export enum FirebaseAuthErrorCodes {
   ClaimsTooLarge = "auth/claims-too-large",
   EmailAlreadyExists = "auth/email-already-exists",
@@ -55,4 +60,37 @@ export enum FirebaseAuthErrorCodes {
   UnauthorizedContinueUri = "auth/unauthorized-continue-uri",
   UserDisabled = "auth/user-disabled",
   UserNotFound = "auth/user-not-found",
+}
+
+export enum PostgresErrorCodes {
+  // Class 23 — Integrity Constraint Violation
+  UniqueViolation = "23505",
+  ForeignKeyViolation = "23503",
+  NotNullViolation = "23502",
+  CheckViolation = "23514",
+
+  // Class 22 — Data Exception
+  InvalidTextRepresentation = "22P02",
+  StringDataRightTruncation = "22001",
+  NumericValueOutOfRange = "22003",
+  InvalidDatetimeFormat = "22007",
+
+  // Class 42 — Syntax Error or Access Rule Violation
+  UndefinedTable = "42P01",
+  UndefinedColumn = "42703",
+
+  // Other Common Errors
+  ConnectionFailure = "08006",
+  ConnectionDoesNotExist = "08003",
+  InvalidTransactionState = "25000",
+}
+
+export enum PublicRoutes {
+  Home = "/",
+  Login = "/login",
+  Register = "/register",
+}
+
+export enum PrivateRoutes {
+  Dashboard = "/dashboard",
 }

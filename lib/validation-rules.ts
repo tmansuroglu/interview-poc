@@ -1,9 +1,9 @@
-import { AuthFields } from "./field-names";
 import {
   string as zodString,
   email as zodEmail,
   object as zodObject,
 } from "zod";
+import { AuthFields } from "./enums";
 
 export const AUTH_FIELDS_VALIDATION_RULES = {
   [AuthFields.Email]: {

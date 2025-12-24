@@ -1,6 +1,6 @@
 import { Root } from "@radix-ui/react-label";
 
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
 import { ComponentProps } from "react";
 
 function Label({ className, ...props }: ComponentProps<typeof Root>) {
