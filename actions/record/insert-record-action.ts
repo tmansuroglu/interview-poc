@@ -3,10 +3,11 @@
 import { validateRecordFields } from "@/lib/action-utils/validate-record-fields";
 import { getDrizzleErrorMessage } from "@/lib/db/get-drizzle-error-message";
 import { insertRecord } from "@/lib/db/record/insert-record";
-import { CookieErrors } from "@/lib/enums";
+import { CookieErrors, PrivateRoutes } from "@/lib/enums";
 import { verifySession } from "@/lib/session/verify-session";
 import { InsertRecordState } from "@/lib/types";
 import { DrizzleQueryError } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export const insertRecordAction = async (
   prevState: InsertRecordState,
@@ -37,6 +38,7 @@ export const insertRecordAction = async (
       recordedByUserId: firebaseUserId,
     });
 
+    revalidatePath(PrivateRoutes.Dashboard);
     return { success: true, resetId: crypto.randomUUID() };
   } catch (error) {
     if (error instanceof DrizzleQueryError) {
