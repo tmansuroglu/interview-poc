@@ -4,7 +4,7 @@ import { verifySession } from "@/lib/session/verify-session";
 import { GetAllRecordsState } from "@/lib/types";
 import { DrizzleQueryError } from "drizzle-orm";
 import { logoutUserAction } from "../auth/logout-user-action";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { PublicRoutes } from "@/lib/enums";
 
 export const getAllRecordsAction = async (): Promise<GetAllRecordsState> => {
@@ -37,7 +37,7 @@ export const getAllRecordsAction = async (): Promise<GetAllRecordsState> => {
 
     if (error instanceof Error && error.message === "logout") {
       await logoutUserAction();
-      redirect(PublicRoutes.Login);
+      redirect(PublicRoutes.Login, RedirectType.replace);
     }
 
     console.log("Unexpected get all records error", error);
