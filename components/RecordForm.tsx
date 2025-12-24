@@ -38,7 +38,7 @@ export default function RecordForm({
 
   return (
     <form action={formAction} className="space-y-4">
-      <div className="space-y-2 w-lg">
+      <div className="space-y-2 max-w-lg w-full">
         <Label htmlFor={nameInputId}>Name</Label>
         <Input
           id={nameInputId}

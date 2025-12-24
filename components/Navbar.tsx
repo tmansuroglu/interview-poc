@@ -8,7 +8,7 @@ export default async function Navbar() {
   const { isAuth } = await verifySession();
 
   return (
-    <nav className="container mx-auto">
+    <nav>
       <ul className="flex gap-4 py-2  justify-center">
         <li>
           <Button asChild>

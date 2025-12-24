@@ -1,21 +1,16 @@
-"use client";
+"use server";
 
-import { insertRecordAction } from "@/actions/record/insert-record-action";
-import RecordForm from "@/components/RecordForm";
-import { useActionState } from "react";
+import { getAllRecordsAction } from "@/actions/record/get-all-records-action";
+import Chart from "@/components/Chart";
+import RecordFormSection from "@/components/RecordFormSection";
 
-export default function DashboardPage() {
-  const [state, formAction, pending] = useActionState(insertRecordAction, null);
-
+export default async function DashboardPage() {
+  const response = await getAllRecordsAction();
   return (
     <main className="space-y-6">
       <h1>Dasboard</h1>
-      <RecordForm
-        state={state}
-        formAction={formAction}
-        pending={pending}
-        key={state?.resetId}
-      />
+      <Chart data={response?.records || []} />
+      <RecordFormSection />
     </main>
   );
 }

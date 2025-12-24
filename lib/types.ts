@@ -8,9 +8,15 @@ export type SessionPayload = {
   firebaseUserId: string;
 };
 
-export type RecordState = {
+export type InsertRecordState = {
   success: boolean;
   errors?: { name?: string[]; isVaccinated?: string[] };
   message?: string;
   resetId?: string;
+} | null;
+
+export type GetAllRecordsState = {
+  success: boolean;
+  message?: string;
+  records?: { name: string; count: number }[];
 } | null;

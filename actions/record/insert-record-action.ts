@@ -5,13 +5,13 @@ import { getDrizzleErrorMessage } from "@/lib/db/get-drizzle-error-message";
 import { insertRecord } from "@/lib/db/record/insert-record";
 import { CookieErrors } from "@/lib/enums";
 import { verifySession } from "@/lib/session/verify-session";
-import { RecordState } from "@/lib/types";
+import { InsertRecordState } from "@/lib/types";
 import { DrizzleQueryError } from "drizzle-orm";
 
 export const insertRecordAction = async (
-  prevState: RecordState,
+  prevState: InsertRecordState,
   formData: FormData
-): Promise<RecordState> => {
+): Promise<InsertRecordState> => {
   try {
     const validationResponse = validateRecordFields(formData);
 
