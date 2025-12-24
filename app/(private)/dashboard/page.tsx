@@ -1,15 +1,14 @@
-"use server";
-
-import { getAllRecordsAction } from "@/actions/record/get-all-records-action";
-import Chart from "@/components/Chart";
+import ChartSection from "@/components/ChartSection";
 import RecordFormSection from "@/components/RecordFormSection";
+import { Suspense } from "react";
 
-export default async function DashboardPage() {
-  const response = await getAllRecordsAction();
+export default function DashboardPage() {
   return (
     <main className="space-y-6">
       <h1>Dasboard</h1>
-      <Chart data={response?.records || []} />
+      <Suspense fallback={"Loading chart.."}>
+        <ChartSection />
+      </Suspense>
       <RecordFormSection />
     </main>
   );
